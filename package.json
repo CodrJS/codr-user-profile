@@ -1,10 +1,12 @@
 {
-  "name": "ts-kakfa-template",
+  "name": "codr-user-profile",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "start": "node dist/serve.js",
-    "build": "swc ./src -d dist"
+    "build": "swc ./src -d dist",
+    "build:docker": "docker build -t codr-user-profile .",
+    "test": "jest --config jest.config.json --passWithNoTests --coverage"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
@@ -23,6 +25,7 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
+    "@casl/mongoose": "^7.1.2",
     "@codrjs/config": "^1.0.0",
     "@codrjs/health": "^1.0.3",
     "@codrjs/kafka": "^1.0.2",

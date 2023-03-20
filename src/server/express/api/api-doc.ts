@@ -12,10 +12,11 @@ import {
   R503,
 } from "@dylanbulmer/openapi/classes/responses";
 import {
-  BaseSchema,
+  BaseEntitySchema,
   ErrorSchema,
   GenericSchema,
   HealthSchema,
+  ProfileEntitySchema,
 } from "./schemas";
 import { BearerScheme } from "./schemes";
 
@@ -32,8 +33,8 @@ const settings: OpenAPIV3_1.Document = {
 
   info: {
     version: "1.0.0",
-    title: "Example API",
-    description: "A sample API to illustrate OpenAPI concepts",
+    title: "Profile Entity API",
+    description: "Preform CRUD operations on the profile collection in Mongo.",
     contact: {
       name: "Dylan Bulmer",
       url: "https://codrjs.com",
@@ -62,10 +63,11 @@ const settings: OpenAPIV3_1.Document = {
       "503": R503,
     },
     schemas: {
-      BaseSchema,
+      BaseEntitySchema,
       ErrorSchema,
       GenericSchema,
       HealthSchema,
+      ProfileEntitySchema,
     },
     securitySchemes: {
       Bearer: BearerScheme,

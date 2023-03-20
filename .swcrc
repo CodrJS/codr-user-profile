@@ -10,7 +10,10 @@
     "keepClassNames": false,
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/express/*": ["./server/express/*"],
+      "@/kakfa/*": ["./server/kafka/*"],
+      "@/mongo/*": ["./server/mongo/*"]
     }
   },
   "module": {
