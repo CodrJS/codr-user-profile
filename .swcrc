@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "dynamicImport": true
+    },
+    "target": "es5",
+    // Requires v1.2.50 or upper and requires target to be es2016 or upper.
+    "keepClassNames": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "env": {
+    "targets": {
+      "node": 16
+    }
+  },
+  "minify": true
+}
