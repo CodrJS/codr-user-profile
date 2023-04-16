@@ -4,13 +4,13 @@ import { ProfileDocument } from "./Profile";
 const permissions: Types.Permissions<ProfileDocument, "Profile"> = {
   "codr:system": (_user, { can, cannot }) => {
     can("manage", "Profile");
-    cannot("update", "Profile", { role: { $eq: "codr:system" } });
-    cannot("delete", "Profile", { role: { $eq: "codr:system" } });
+    cannot("update", "Profile", { username: { $eq: "System" } });
+    cannot("delete", "Profile", { username: { $eq: "System" } });
   },
   "codr:admin": (_user, { can, cannot }) => {
     can("manage", "Profile");
-    cannot("update", "Profile", { role: { $eq: "codr:system" } });
-    cannot("delete", "Profile", { role: { $eq: "codr:system" } });
+    cannot("update", "Profile", { username: { $eq: "System" } });
+    cannot("delete", "Profile", { username: { $eq: "System" } });
   },
   "codr:researcher": (user, { can }) => {
     // can read all profiles and update it's own
