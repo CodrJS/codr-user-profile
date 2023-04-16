@@ -5,8 +5,10 @@
   "scripts": {
     "start": "node dist/serve.js",
     "build": "swc ./src -d dist",
-    "build:docker": "docker build -t codr-user-profile .",
-    "test": "jest --config jest.config.json --passWithNoTests --coverage"
+    "clean": "rm -R dist/*",
+    "test": "jest --config jest.config.json --passWithNoTests --coverage",
+    "docker:build": "docker build -t codr-user-profile .",
+    "docker:run": "docker run --env-file=.env -p 8000:8000 ghcr.io/codrjs/codr-user-profile:latest"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
