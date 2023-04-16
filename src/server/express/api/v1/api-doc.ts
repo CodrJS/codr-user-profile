@@ -17,24 +17,24 @@ import {
   GenericSchema,
   HealthSchema,
   ProfileEntitySchema,
+  MetadataSchema,
 } from "./schemas";
 import { BearerScheme } from "./schemes";
+import { OpenAPI } from "@codrjs/models";
+import Config from "@codrjs/config";
+
+const OpenAPIConfig = new OpenAPI();
 
 const settings: OpenAPIV3_1.Document = {
   openapi: "3.1.0",
 
   // The servers property breaks all apis for some reason
-  servers: [
-    {
-      url: `http://localhost:8000/api/`,
-      description: "Dev Server",
-    },
-  ],
+  servers: OpenAPIConfig.servers,
 
   info: {
-    version: "1.0.0",
-    title: "Profile Entity API",
-    description: "Preform CRUD operations on the profile collection in Mongo.",
+    version: Config.version ?? "Unknown",
+    title: OpenAPIConfig.info.title,
+    description: OpenAPIConfig.info.description,
     contact: {
       name: "Dylan Bulmer",
       url: "https://codrjs.com",
@@ -68,6 +68,7 @@ const settings: OpenAPIV3_1.Document = {
       GenericSchema,
       HealthSchema,
       ProfileEntitySchema,
+      MetadataSchema,
     },
     securitySchemes: {
       Bearer: BearerScheme,

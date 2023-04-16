@@ -12,10 +12,11 @@ initialize({
     doc: apiDoc,
     routes: path.join(__dirname, "routes"),
     expose: true,
+    url: "/service/apidocs",
   },
   ui: {
     enable: true,
-    // url: "/docs/elements"
+    url: "/service/docs",
   },
 }).catch(console.error);
 

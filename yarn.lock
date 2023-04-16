@@ -311,10 +311,10 @@
   resolved "https://registry.yarnpkg.com/@casl/mongoose/-/mongoose-7.1.2.tgz#61e86839ee19df8443158f44b10cbbe5137ed1fb"
   integrity sha512-YiY5gQlr5J0jsn0ZbjtDJEhqKviPyPj0ErZ2bnOh7li+ENvFMnfp5ZeF2wN7ZVcqK9mn4MCqWH56EzafRF3i+g==
 
-"@codrjs/config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@codrjs/config/-/config-1.0.0.tgz#90dd9367da77976cc685cf82c344823115753ed5"
-  integrity sha512-KWN7lzW7D7+ysyYYTh+TXf8RZVVMF46umyf19k/ytH3vInDSWSBDiLZ7UaUIIiT1kqAkILYd8FFYUNHBzgZOSg==
+"@codrjs/config@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@codrjs/config/-/config-1.0.6.tgz#a5f9906c6fa21f8d4621eedcad26563bed4d0f5b"
+  integrity sha512-4eM8RSfqDWJXCVTsjOpq6ojcT7CwCh6nCTrwyLcbY3rYLBNTJtM2Ex1Px6jM3MPu+kgjrqgkC+FvnohBCk5wtA==
   dependencies:
     dotenv "^16.0.3"
 
@@ -340,12 +340,13 @@
   dependencies:
     winston "^3.8.2"
 
-"@codrjs/models@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@codrjs/models/-/models-1.0.3.tgz#7be6a70c6f6b44e047d0afb32300d8340588dc23"
-  integrity sha512-hD5yWR2GY1gXdHMMdzwt7xfnqPVr7IPNxrdUo0CArxGabXgeFRPkSboWd2Jyit9erU4BlMl6Gi/lhhgLgeLFCA==
+"@codrjs/models@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@codrjs/models/-/models-1.0.7.tgz#506c5e913c7b67bc70400eb8cc3330359c054ea9"
+  integrity sha512-7U3x7fiMugr/QC1FsgzwBcmbGtRwfA/ZokBDrmcof6NhujK0hXmYslEyYGVrePYIeihDIZkmU8+i1qlFKr5oOQ==
   dependencies:
     "@casl/ability" "^6.3.3"
+    "@codrjs/config" "^1.0.6"
     uuid "^9.0.0"
 
 "@colors/colors@1.5.0":

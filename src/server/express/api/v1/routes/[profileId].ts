@@ -1,7 +1,7 @@
 import { Error } from "@codrjs/models";
 import { Operation } from "@dylanbulmer/openapi/types/Route";
 import { R200, R401, R403, R500 } from "@dylanbulmer/openapi/classes/responses";
-import verifyJWT from "../../../middlewares/verifyJWT";
+import verifyJWT from "@/server/express/middlewares/verifyJWT";
 import { ProfileUtility } from "@/utils/ProfileUtility";
 
 export const GET: Operation = [
@@ -11,7 +11,7 @@ export const GET: Operation = [
     const util = new ProfileUtility();
     util
       .get(req.user, req.params.profileId)
-      .then(res.status(200).json)
+      .then(resp => res.status(200).json(resp))
       .catch((err: Error) => res.status(err.status).json(err));
   },
 ];
@@ -23,7 +23,7 @@ export const PATCH: Operation = [
     const util = new ProfileUtility();
     util
       .update(req.user, req.params.profileId, req.body)
-      .then(res.status(200).json)
+      .then(resp => res.status(200).json(resp))
       .catch((err: Error) => res.status(err.status).json(err));
   },
 ];
@@ -35,7 +35,7 @@ export const DELETE: Operation = [
     const util = new ProfileUtility();
     util
       .delete(req.user, req.params.profileId)
-      .then(res.status(200).json)
+      .then(resp => res.status(200).json(resp))
       .catch((err: Error) => res.status(err.status).json(err));
   },
 ];
@@ -44,6 +44,17 @@ export const DELETE: Operation = [
 GET.apiDoc = {
   description: "Get profile from database.",
   tags: ["Profile Management"],
+  parameters: [
+    {
+      in: "path",
+      name: "profileId",
+      schema: {
+        type: "string",
+      },
+      required: true,
+      description: "Profile identifier",
+    }
+  ],
   responses: {
     "200": {
       description: R200.description,
@@ -126,6 +137,17 @@ GET.apiDoc = {
 PATCH.apiDoc = {
   description: "Update profile in database.",
   tags: ["Profile Management"],
+  parameters: [
+    {
+      in: "path",
+      name: "profileId",
+      schema: {
+        type: "string",
+      },
+      required: true,
+      description: "Profile identifier",
+    }
+  ],
   responses: {
     "200": {
       description: R200.description,
@@ -233,6 +255,17 @@ PATCH.apiDoc = {
 DELETE.apiDoc = {
   description: "Delete profile from database. This action preforms a soft-delete.",
   tags: ["Profile Management"],
+  parameters: [
+    {
+      in: "path",
+      name: "profileId",
+      schema: {
+        type: "string",
+      },
+      required: true,
+      description: "Profile identifier",
+    }
+  ],
   responses: {
     "200": {
       description: R200.description,

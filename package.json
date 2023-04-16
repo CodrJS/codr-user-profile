@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "@casl/mongoose": "^7.1.2",
-    "@codrjs/config": "^1.0.0",
+    "@codrjs/config": "^1.0.6",
     "@codrjs/health": "^1.0.3",
     "@codrjs/kafka": "^1.0.2",
     "@codrjs/logger": "^1.0.0",
-    "@codrjs/models": "^1.0.3",
+    "@codrjs/models": "^1.0.7",
     "@dylanbulmer/openapi": "^1.0.7",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",

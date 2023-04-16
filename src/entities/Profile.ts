@@ -32,8 +32,8 @@ const ProfileSchema = new Schema<IProfile>(
       },
       required: true,
     },
-    createdAt: String,
-    updatedAt: String,
+    createdAt: { type: String },
+    updatedAt: { type: String },
   },
   {
     timestamps: true,

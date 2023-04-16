@@ -9,6 +9,7 @@ import {
 } from "@codrjs/models";
 import MongoProfile, { ProfileDocument } from "@/entities/Profile";
 import ProfileAbility from "@/entities/Profile.ability";
+import { Types } from "mongoose";
 
 export class ProfileUtility extends Utility {
   // an internal method for getting the desired document to check against permissions
@@ -27,11 +28,46 @@ export class ProfileUtility extends Utility {
     }
   }
 
+  private async _getDocumentByUserId<T>(userId: Types.ObjectId) {
+    try {
+      return (await MongoProfile.findOne({ userId })) as T;
+    } catch (err) {
+      throw new Error({
+        status: 500,
+        message: "Something went wrong when fetching profile",
+        details: {
+          userId,
+          error: err,
+        },
+      });
+    }
+  }
+
   async get(token: IUser, id: string) {
     // get desired profile document
     const profile = await this._getDocument<ProfileDocument>(id);
 
     // if profile and read the document, send it, else throw error
+    if (ProfileAbility(token).can("read", subject("Profile", profile))) {
+      return new Response({
+        message: "OK",
+        details: {
+          profile: new Profile(profile),
+        },
+      });
+    } else {
+      throw new Error({
+        status: 403,
+        message: "User is forbidden from reading this profile.",
+      });
+    }
+  }
+
+  async getByUIserId(token: IUser, userId: Types.ObjectId) {
+    // get desired user document
+    const profile = await this._getDocumentByUserId<ProfileDocument>(userId);
+
+    // if user and read the document, send it, else throw error
     if (ProfileAbility(token).can("read", subject("Profile", profile))) {
       return new Response({
         message: "OK",
