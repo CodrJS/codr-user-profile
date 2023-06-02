@@ -33,7 +33,7 @@
     "@codrjs/health": "^1.0.3",
     "@codrjs/kafka": "^1.0.2",
     "@codrjs/logger": "^1.0.0",
-    "@codrjs/models": "^1.0.7",
+    "@codrjs/models": "^1.0.9",
     "@dylanbulmer/openapi": "^1.0.8",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",

@@ -1,10 +1,9 @@
-import { IUser } from "@codrjs/models";
-import { JwtPayload } from "jsonwebtoken";
+import type { Types } from "@codrjs/models";
 
 declare global {
   namespace Express {
     interface Request {
-      user: JwtPayload & IUser;
+      user: Types.JwtPayload;
     }
   }
 }

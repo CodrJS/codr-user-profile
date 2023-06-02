@@ -5,11 +5,13 @@ import {
   Utility,
   Error,
   Response,
-  IUser,
+  Types as CodrTypes,
 } from "@codrjs/models";
 import MongoProfile, { ProfileDocument } from "@/entities/Profile";
 import ProfileAbility from "@/entities/Profile.ability";
 import { Types } from "mongoose";
+
+type JwtPayload = CodrTypes.JwtPayload;
 
 export class ProfileUtility extends Utility {
   // an internal method for getting the desired document to check against permissions
@@ -43,7 +45,7 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  async get(token: IUser, id: string) {
+  async get(token: JwtPayload, id: string) {
     // get desired profile document
     const profile = await this._getDocument<ProfileDocument>(id);
 
@@ -63,7 +65,7 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  async getByUIserId(token: IUser, userId: Types.ObjectId) {
+  async getByUIserId(token: JwtPayload, userId: Types.ObjectId) {
     // get desired user document
     const profile = await this._getDocumentByUserId<ProfileDocument>(userId);
 
@@ -83,7 +85,7 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  async create(token: IUser, obj: IProfile) {
+  async create(token: JwtPayload, obj: IProfile) {
     // if profile can create profiles
     if (ProfileAbility(token).can("create", "Profile")) {
       try {
@@ -111,7 +113,7 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  async update(token: IUser, id: string, obj: Partial<IProfile>) {
+  async update(token: JwtPayload, id: string, obj: Partial<IProfile>) {
     // get desired profile document
     const profile = await this._getDocument<ProfileDocument>(id);
 
@@ -149,7 +151,7 @@ export class ProfileUtility extends Utility {
   /**
    * @todo Hard or soft delete profiles?
    */
-  async delete(token: IUser, id: string) {
+  async delete(token: JwtPayload, id: string) {
     throw new Error({
       status: 500,
       message: "Method not implemented.",

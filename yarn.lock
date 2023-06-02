@@ -325,6 +325,13 @@
   dependencies:
     dotenv "^16.0.3"
 
+"@codrjs/config@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@codrjs/config/-/config-1.0.7.tgz#1938998597a4b00591bf7e27457470e1213f67ed"
+  integrity sha512-NpxK8EGSdb4QXKLsv8z0bTL7KWbo5nxGxqzn2XrYMTPQp76zctCJJG7UzKL0cc4TAdL0OzkXWoNDq420tkoaJA==
+  dependencies:
+    dotenv "^16.0.3"
+
 "@codrjs/health@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@codrjs/health/-/health-1.0.3.tgz#97b46c81a230a249184e5c29f4a033f4bb3f29d0"
@@ -347,13 +354,13 @@
   dependencies:
     winston "^3.8.2"
 
-"@codrjs/models@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@codrjs/models/-/models-1.0.7.tgz#506c5e913c7b67bc70400eb8cc3330359c054ea9"
-  integrity sha512-7U3x7fiMugr/QC1FsgzwBcmbGtRwfA/ZokBDrmcof6NhujK0hXmYslEyYGVrePYIeihDIZkmU8+i1qlFKr5oOQ==
+"@codrjs/models@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@codrjs/models/-/models-1.0.9.tgz#1effe130b7e97a749d57b861cbd95915378f41ad"
+  integrity sha512-QkRghbjNmdWxpTuLyw015pzSnmg6fRsK3vs3lSYV/B/2eBC0UaLd+BL0moAH0GKl6U1DDgnuV4LilG8RQYM4IQ==
   dependencies:
     "@casl/ability" "^6.3.3"
-    "@codrjs/config" "^1.0.6"
+    "@codrjs/config" "^1.0.7"
     uuid "^9.0.0"
 
 "@colors/colors@1.5.0":

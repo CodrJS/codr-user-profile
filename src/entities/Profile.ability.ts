@@ -1,4 +1,4 @@
-import { Types, IUser } from "@codrjs/models";
+import { Types } from "@codrjs/models";
 import { ProfileDocument } from "./Profile";
 
 const permissions: Types.Permissions<ProfileDocument, "Profile"> = {
@@ -23,5 +23,5 @@ const permissions: Types.Permissions<ProfileDocument, "Profile"> = {
   },
 };
 
-const ProfileAbility = (user: IUser) => Types.DefineAbility(user, permissions);
+const ProfileAbility = (user: Types.JwtPayload) => Types.DefineAbility(user, permissions);
 export default ProfileAbility;
