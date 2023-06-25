@@ -3,5 +3,7 @@
     "^.+\\.(t|j)sx?$": "@swc/jest"
   },
   "testRegex": "/src/__tests__/.*\\.(test|spec)\\.(jsx?|tsx?)$",
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "extensionsToTreatAsEsm": [".ts", ".tsx"],
+  "preset": "@shelf/jest-mongodb"
 }

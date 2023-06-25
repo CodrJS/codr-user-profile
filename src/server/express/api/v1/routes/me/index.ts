@@ -11,7 +11,7 @@ export const GET: Operation = [
   (req, res) => {
     const util = new ProfileUtility();
     util
-      .getByUIserId(req.user, <Types.ObjectId>req.user["_id"])
+      .getByUserId(req.user, new Types.ObjectId(req.user.sub))
       .then(resp => res.status(200).json(resp))
       .catch((err: Error) => res.status(err.status).json(err));
   },

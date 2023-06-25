@@ -1,23 +1,30 @@
-import { subject } from "@casl/ability";
+import { Types as MongoTypes } from "mongoose";
 import {
   Profile,
   IProfile,
   Utility,
   Error,
   Response,
-  Types as CodrTypes,
+  Types,
 } from "@codrjs/models";
-import MongoProfile, { ProfileDocument } from "@/entities/Profile";
-import ProfileAbility from "@/entities/Profile.ability";
-import { Types } from "mongoose";
+import { Abilities, Documents } from "@codrjs/mongo";
+import Mongo from "./Mongo";
 
-type JwtPayload = CodrTypes.JwtPayload;
+type Document = Documents.ProfileDocument;
+type JwtPayload = Types.JwtPayload;
 
 export class ProfileUtility extends Utility {
+  private Profile;
+
+  constructor() {
+    super();
+    this.Profile = Mongo.User.Profile;
+  }
+
   // an internal method for getting the desired document to check against permissions
   protected async _getDocument<T>(id: string) {
     try {
-      return (await MongoProfile.findById(id)) as T;
+      return (await this.Profile.findById(id)) as T;
     } catch (err) {
       throw new Error({
         status: 500,
@@ -30,9 +37,9 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  private async _getDocumentByUserId<T>(userId: Types.ObjectId) {
+  private async _getDocumentByUserId<T>(userId: MongoTypes.ObjectId) {
     try {
-      return (await MongoProfile.findOne({ userId })) as T;
+      return (await this.Profile.findOne({ userId })) as T;
     } catch (err) {
       throw new Error({
         status: 500,
@@ -47,10 +54,10 @@ export class ProfileUtility extends Utility {
 
   async get(token: JwtPayload, id: string) {
     // get desired profile document
-    const profile = await this._getDocument<ProfileDocument>(id);
+    const profile = new Profile(await this._getDocument<Document>(id));
 
     // if profile and read the document, send it, else throw error
-    if (ProfileAbility(token).can("read", subject("Profile", profile))) {
+    if (Abilities.ProfileAbility(token).can("read", profile)) {
       return new Response({
         message: "OK",
         details: {
@@ -65,12 +72,12 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  async getByUIserId(token: JwtPayload, userId: Types.ObjectId) {
+  async getByUserId(token: JwtPayload, userId: MongoTypes.ObjectId) {
     // get desired user document
-    const profile = await this._getDocumentByUserId<ProfileDocument>(userId);
+    const profile = await this._getDocumentByUserId<Document>(userId);
 
     // if user and read the document, send it, else throw error
-    if (ProfileAbility(token).can("read", subject("Profile", profile))) {
+    if (Abilities.ProfileAbility(token).can("read", profile)) {
       return new Response({
         message: "OK",
         details: {
@@ -85,12 +92,12 @@ export class ProfileUtility extends Utility {
     }
   }
 
-  async create(token: JwtPayload, obj: IProfile) {
+  async create(token: JwtPayload, obj: Profile) {
     // if profile can create profiles
-    if (ProfileAbility(token).can("create", "Profile")) {
+    if (Abilities.ProfileAbility(token).can("create", obj)) {
       try {
         // create profile
-        const profile = await MongoProfile.create(obj);
+        const profile = await this.Profile.create(obj.toJSON());
         return new Response({
           message: "OK",
           details: {
@@ -115,21 +122,21 @@ export class ProfileUtility extends Utility {
 
   async update(token: JwtPayload, id: string, obj: Partial<IProfile>) {
     // get desired profile document
-    const profile = await this._getDocument<ProfileDocument>(id);
+    const profile = new Profile(await this._getDocument<Document>(id));
 
     // check permissions
-    if (ProfileAbility(token).can("update", subject("Profile", profile))) {
+    if (Abilities.ProfileAbility(token).can("update", profile)) {
       try {
         // update profile.
-        const profile = (await MongoProfile.findByIdAndUpdate(id, obj, {
+        const updatedProfile = (await this.Profile.findByIdAndUpdate(id, obj, {
           returnDocument: "after",
-        })) as ProfileDocument;
+        })) as Document;
 
         // return true if succeeded, else throw error
         return new Response({
           message: "OK",
           details: {
-            profile: new Profile(profile),
+            profile: new Profile(updatedProfile),
           },
         });
       } catch (e) {

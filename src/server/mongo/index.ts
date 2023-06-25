@@ -1,27 +1,29 @@
-import config from "@codrjs/config";
 import { ServiceHealth } from "@codrjs/health";
-import mongoose from "mongoose";
+import Mongo from "@/utils/Mongo";
 import MongoLogger from "./utils/logger";
 
 export const start = async () => {
-  // Setup Logger
-  mongoose.connection.on("open", () => {
-    MongoLogger.info("connected to database.");
-  });
-  mongoose.connection.on("reconnected", () => {
-    MongoLogger.info("reconnected to database.");
-  });
-  mongoose.connection.on("disconnected", () => {
-    MongoLogger.info("disconnected to database.");
-  });
-
-  // Setup heath check
-  ServiceHealth.addMongo(mongoose.connection);
-
   // Connect to DB
-  await mongoose.connect(config.mongo.uri);
+  await Mongo.connect(connection => {
+    // Setup Logger
+    connection.on("open", () => {
+      MongoLogger.info("connected to database.");
+    });
+    connection.on("reconnected", () => {
+      MongoLogger.info("reconnected to database.");
+    });
+    connection.on("disconnecting", () => {
+      MongoLogger.info("disconnecting from database.");
+    });
+    connection.on("disconnected", () => {
+      MongoLogger.info("disconnected from database.");
+    });
+
+    // Setup heath check
+    ServiceHealth.addMongo(connection);
+  });
 };
 
 export const stop = async () => {
-  await mongoose.disconnect();
+  await Mongo.close();
 };

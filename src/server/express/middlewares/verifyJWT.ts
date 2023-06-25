@@ -1,7 +1,7 @@
 import config from "@codrjs/config";
-import { Error, IUser } from "@codrjs/models";
+import { Error, Types } from "@codrjs/models";
 import { RequestHandler } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const verifyJWT: RequestHandler = function verifyJWT(req, res, next) {
   // get authoriztion header
@@ -16,7 +16,7 @@ const verifyJWT: RequestHandler = function verifyJWT(req, res, next) {
       // try to verify token
       const token = jwt.verify(bearer, config.jwt.secret, {
         issuer: config.jwt.issuer,
-      }) as JwtPayload & IUser;
+      }) as Types.JwtPayload;
 
       // if successful, set user and pass request to the next operation.
       req.user = token;
