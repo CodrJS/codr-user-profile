@@ -1086,13 +1086,6 @@
   resolved "https://registry.yarnpkg.com/@casl/mongoose/-/mongoose-7.1.3.tgz#9b00cc5dd2d47f4211ad5903eaa0f9633dd977fa"
   integrity sha512-RWdOHhkE6cSUk63NDqQ729qfWk2sS/kQ7oSfv4NZEkdUSheFIG0QR9O6eXBuPDRbCzOunB62zJ799xWb7na8OA==
 
-"@codrjs/config@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@codrjs/config/-/config-1.0.6.tgz#a5f9906c6fa21f8d4621eedcad26563bed4d0f5b"
-  integrity sha512-4eM8RSfqDWJXCVTsjOpq6ojcT7CwCh6nCTrwyLcbY3rYLBNTJtM2Ex1Px6jM3MPu+kgjrqgkC+FvnohBCk5wtA==
-  dependencies:
-    dotenv "^16.0.3"
-
 "@codrjs/config@^1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@codrjs/config/-/config-1.0.7.tgz#1938998597a4b00591bf7e27457470e1213f67ed"
@@ -1126,6 +1119,16 @@
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/@codrjs/models/-/models-1.0.13.tgz#dc3c1a14718fef915ef5a70334fc03fa93c7568a"
   integrity sha512-zfF6Igk/4Vusowk/crQ+5tUgKHo1Qf2X9dfX/bZBt/MbzKR9Iknp+sh1PTuQYiIgmOQQFWgiXA6/gsOVonjaOw==
+  dependencies:
+    "@casl/ability" "^6.3.3"
+    "@codrjs/config" "^1.0.7"
+    "@ucast/mongo2js" "^1.3.4"
+    uuid "^9.0.0"
+
+"@codrjs/models@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@codrjs/models/-/models-1.0.14.tgz#064535ff6e46301306d76b3ff28a1a369938db0a"
+  integrity sha512-CqG+zJx4gz3ZETSrgREr1Uc8MqYiYArT8T9wp2HNv/oRO7U+RDVmVNIdmhHHoVpi6J5qolVG6+YwywUvCXmebQ==
   dependencies:
     "@casl/ability" "^6.3.3"
     "@codrjs/config" "^1.0.7"

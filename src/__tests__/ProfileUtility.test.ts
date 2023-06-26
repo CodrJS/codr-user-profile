@@ -6,108 +6,6 @@ import Mongo from "@/utils/Mongo";
 import { Documents } from "@codrjs/mongo";
 import Config from "@codrjs/config";
 
-// const testSystemUser: IUser = {
-//   _id: new Types.ObjectId(0),
-//   type: "member",
-//   email: "system",
-//   role: "codr:system",
-//   flags: {
-//     isDeleted: false,
-//     isDisabled: false,
-//     isAnonymous: false,
-//   },
-// };
-
-// const testAdminUser: IUser = {
-//   _id: new Types.ObjectId(1),
-//   type: "member",
-//   email: "admin",
-//   role: "codr:admin",
-//   flags: {
-//     isDeleted: false,
-//     isDisabled: false,
-//     isAnonymous: false,
-//   },
-// };
-
-// const testResearchUser: IUser = {
-//   _id: new Types.ObjectId(2),
-//   type: "member",
-//   email: "researcher",
-//   role: "codr:researcher",
-//   flags: {
-//     isDeleted: false,
-//     isDisabled: false,
-//     isAnonymous: false,
-//   },
-// };
-
-// const testAnnotatorUser: IUser = {
-//   _id: new Types.ObjectId(3),
-//   type: "member",
-//   email: "annotator",
-//   role: "codr:annotator",
-//   flags: {
-//     isDeleted: false,
-//     isDisabled: false,
-//     isAnonymous: false,
-//   },
-// };
-
-// const testSystemProfile: IProfile = {
-//   _id: new Types.ObjectId(0),
-//   userId: testSystemUser._id as Types.ObjectId,
-//   name: {
-//     first: "Codr",
-//     last: "System",
-//     preferred: "System",
-//   },
-//   username: "System",
-// };
-
-// const testAdminProfile: IProfile = {
-//   _id: new Types.ObjectId(1),
-//   userId: testAdminUser._id as Types.ObjectId,
-//   name: {
-//     first: "Admin",
-//     last: "User",
-//     preferred: "Admin",
-//   },
-//   username: "Admin",
-// };
-
-// const testResearchProfile: IProfile = {
-//   _id: new Types.ObjectId(2),
-//   userId: testResearchUser._id as Types.ObjectId,
-//   name: {
-//     first: "Researcher",
-//     last: "User",
-//     preferred: "Researcher",
-//   },
-//   username: "Researcher",
-// };
-
-// const testAnnotatorProfile: IProfile = {
-//   _id: new Types.ObjectId(3),
-//   userId: testAnnotatorUser._id as Types.ObjectId,
-//   name: {
-//     first: "Annotator",
-//     last: "User",
-//     preferred: "Annotator",
-//   },
-//   username: "Annotator",
-// };
-
-// const demoNewProfile: IProfile = {
-//   _id: new Types.ObjectId(4),
-//   userId: new Types.ObjectId(10),
-//   name: {
-//     first: "New",
-//     last: "User",
-//   },
-//   username: "NewUser",
-// };
-
 const generateUser = (
   type: CodrTypes.UserEnum,
   role: CodrTypes.UserRoleEnum,
@@ -139,7 +37,6 @@ const generateProfile = (
     },
     userId,
     username: `TestUser+${userId}`,
-    _id: userId,
     createdBy,
   });
 };
